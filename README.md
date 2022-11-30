@@ -72,7 +72,11 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 Nest is [MIT licensed](LICENSE).
 
-# DEEPAK
+# --------------------------------------------------------
+
+# DEEPAKS NOTES
+
+# --------------------------------------------------------
 
 ## Setup
 
@@ -225,5 +229,24 @@ Response back:
   "error": "Bad Request"
 }
 ```
+
+---
+
+## Docker
+
+Port mapping example:
+
+```yml
+ports:
+  - '5432:5432'
+```
+
+Postgres will be running on its default port 5432 INSIDE the docker container
+But we will also be able to access Postgress from OUTSIDE container on port 5432 aswell.
+
+`docker-compose up -d` will spawn all services
+`docker-compose up db -d` will spawn just the service named db
+
+`-d` is detached mode - which means run containers in background
 
 ---
