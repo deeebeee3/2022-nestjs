@@ -32,7 +32,7 @@ export class CoffeesController {
   }
 
   @Post()
-  @HttpCode(HttpStatus.GONE)
+  @HttpCode(HttpStatus.CREATED)
   /* Dto gives full type safety in our method, letting us know what to expect for our payload */
   create(@Body() createCoffeeDto: CreateCoffeeDto) {
     return this.coffeesService.create(createCoffeeDto);

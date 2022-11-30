@@ -165,3 +165,16 @@ requested elsewhere.
 We use `--no-spec` flag to not generate a test file for our dto...
 
 look at the coffee entity to see what properties we will need for the dto.
+
+---
+
+## VALIDATION
+
+First install the following:
+`pnpm install class-validator class-transformer`
+
+Then add validation pipe in place:
+
+```js
+app.useGlobalPipes(new ValidationPipe());
+```
