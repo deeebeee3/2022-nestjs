@@ -71,3 +71,82 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+# DEEPAK
+
+## Setup
+
+install nest cli
+
+nest new [project name]
+
+cd into [project name]
+
+---
+
+pnpm run start
+pnpm run start:dev
+
+---
+
+## Controllers
+
+Controllers handle requests in our application.
+
+nest generate controller [name]
+(will auto wire up with app module for us).
+
+nest generate controller modules/[name]
+(will generate in src/modules/[name]/)
+
+can use --dry-run flag to see simulated output in console:
+
+nest generate controller modules/[name] --dry-run
+
+---
+
+## Services
+
+Services handle business logic in our application.
+
+nest generate service [name]
+(will auto wire up with app module for us).
+
+nest generate service modules/[name]
+(will generate in src/modules/[name]/)
+
+can use --dry-run flag to see simulated output in console:
+
+nest generate service modules/[name] --dry-run
+
+---
+
+\*\* A service is a provider
+
+A provider means it can inject dependencies
+
+\*\* A provider is just a class annotataed with a decorator called Injectable...
+
+SERVICE:
+
+```js
+@Injectable()
+export class CoffeesService {}
+```
+
+IT IS USED HERE IN THE CONTROLLER:
+
+```js
+@Controller('coffees')
+export class CoffeesController {
+  constructor(private readonly coffeesService: CoffeesService) {}
+}
+```
+
+Nest will resolve the coffeesService by creating and returning an instance of CoffeesService
+to our CoffeesController.
+
+Or in the case of a singleton - returning the existing instance if has already been
+requested elsewhere.
+
+---
