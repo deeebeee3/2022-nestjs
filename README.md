@@ -78,14 +78,14 @@ Nest is [MIT licensed](LICENSE).
 
 install nest cli
 
-nest new [project name]
+`nest new [project name]`
 
 cd into [project name]
 
 ---
 
-pnpm run start
-pnpm run start:dev
+`pnpm run start`
+`pnpm run start:dev`
 
 ---
 
@@ -93,15 +93,15 @@ pnpm run start:dev
 
 Controllers handle requests in our application.
 
-nest generate controller [name]
+`nest generate controller [name]`
 (will auto wire up with app module for us).
 
-nest generate controller modules/[name]
+`nest generate controller modules/[name]`
 (will generate in src/modules/[name]/)
 
-can use --dry-run flag to see simulated output in console:
+can use `--dry-run` flag to see simulated output in console:
 
-nest generate controller modules/[name] --dry-run
+`nest generate controller modules/[name] --dry-run`
 
 ---
 
@@ -109,15 +109,15 @@ nest generate controller modules/[name] --dry-run
 
 Services handle business logic in our application.
 
-nest generate service [name]
+`nest generate service [name]`
 (will auto wire up with app module for us).
 
-nest generate service modules/[name]
+`nest generate service modules/[name]`
 (will generate in src/modules/[name]/)
 
-can use --dry-run flag to see simulated output in console:
+can use `--dry-run` flag to see simulated output in console:
 
-nest generate service modules/[name] --dry-run
+`nest generate service modules/[name] --dry-run`
 
 ---
 
@@ -153,4 +153,12 @@ requested elsewhere.
 
 ## Modules
 
-nest generate module [name]
+`nest generate module [name]`
+
+---
+
+## DTO (Data transfer objects)
+
+`nest generate class coffees/dto/create-coffee.dto --no-spec`
+
+We use `--no-spec` flag to not generate a test file for our dto...
