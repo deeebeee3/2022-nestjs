@@ -27,14 +27,19 @@ export class CoffeesController {
 
   @Get(':id')
   //findOne(@Param() params: any) {
-  findOne(@Param('id') id: string) {
-    return this.coffeesService.findOne(id);
+
+  /* by default every path param and query param come over the network as a string,
+  if we convert to number validation pipe will try to auto convert string to number */
+  findOne(@Param('id') id: number) {
+    console.log(typeof id);
+    return this.coffeesService.findOne('' + id);
   }
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
   /* Dto gives full type safety in our method, letting us know what to expect for our payload */
   create(@Body() createCoffeeDto: CreateCoffeeDto) {
+    console.log(createCoffeeDto instanceof CreateCoffeeDto);
     return this.coffeesService.create(createCoffeeDto);
   }
 
