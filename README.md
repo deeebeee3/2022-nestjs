@@ -178,3 +178,19 @@ Then add validation pipe in place:
 ```js
 app.useGlobalPipes(new ValidationPipe());
 ```
+
+Mapped Types
+`pnpm install @nestjs/mapped-types`
+
+Avoid repetition code smell by using PartialType:
+
+```js
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateCoffeeDto } from './create-coffee.dto';
+
+export class UpdateCoffeeDto extends PartialType(CreateCoffeeDto) {}
+```
+
+In UpdateCoffeeDto all fields are optional.
+
+---
