@@ -150,3 +150,7 @@ Or in the case of a singleton - returning the existing instance if has already b
 requested elsewhere.
 
 ---
+
+## Modules
+
+nest generate module [name]
