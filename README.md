@@ -78,6 +78,8 @@ Nest is [MIT licensed](LICENSE).
 
 # --------------------------------------------------------
 
+# SECTION ONE 1
+
 ## Setup
 
 install nest cli
@@ -232,6 +234,8 @@ Response back:
 
 ---
 
+# SECTION TWO 2
+
 ## Docker
 
 Port mapping example:
@@ -250,3 +254,9 @@ But we will also be able to access Postgress from OUTSIDE container on port 5432
 `-d` is detached mode - which means run containers in background
 
 ---
+
+## TypeORM
+
+Install below three packages;
+
+`pnpm install @nestjs/typeorm typeorm pg`
