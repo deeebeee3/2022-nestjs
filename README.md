@@ -160,5 +160,8 @@ requested elsewhere.
 ## DTO (Data transfer objects)
 
 `nest generate class coffees/dto/create-coffee.dto --no-spec`
+`nest generate class coffees/dto/update-coffee.dto --no-spec`
 
 We use `--no-spec` flag to not generate a test file for our dto...
+
+look at the coffee entity to see what properties we will need for the dto.
