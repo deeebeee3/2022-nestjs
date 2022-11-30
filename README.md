@@ -179,7 +179,8 @@ Then add validation pipe in place:
 app.useGlobalPipes(new ValidationPipe());
 ```
 
-Mapped Types
+### Mapped Types
+
 `pnpm install @nestjs/mapped-types`
 
 Avoid repetition code smell by using PartialType:
@@ -192,5 +193,37 @@ export class UpdateCoffeeDto extends PartialType(CreateCoffeeDto) {}
 ```
 
 In UpdateCoffeeDto all fields are optional.
+
+### Whitelisting
+
+```js
+{
+  whitelist: true,
+  forbidNonWhitelisted: true,
+}
+```
+
+Example request body (isEnabled does not exist on Dto)...
+
+POST localhost:3000/coffees
+
+```json
+{
+  "name": "Shipwreck Roast",
+  "brand": "Buddy Brew",
+  "flavours": ["caramel"],
+  "isEnabled": true
+}
+```
+
+Response back:
+
+```json
+{
+  "statusCode": 400,
+  "message": ["property isEnabled should not exist"],
+  "error": "Bad Request"
+}
+```
 
 ---
