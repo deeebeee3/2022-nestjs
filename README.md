@@ -287,3 +287,8 @@ return Promise.reject(`Coffee #${id} not found`);
 ```
 
 ---
+
+## TypeORM Relations
+
+`nest g class coffees/entities/flavour.entity --no-spec`
+(don't need test file for entities)
