@@ -9,12 +9,16 @@ import { Repository } from 'typeorm';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { Coffee } from './entities/coffee.entity';
+import { Flavour } from './entities/flavour.entity';
 
 @Injectable()
 export class CoffeesService {
   constructor(
     @InjectRepository(Coffee)
     private readonly coffeeRepository: Repository<Coffee>,
+
+    @InjectRepository(Flavour)
+    private readonly flavourRepository: Repository<Flavour>,
   ) {}
 
   findAll() {
@@ -48,18 +52,34 @@ export class CoffeesService {
     return Promise.resolve(coffee) */
   }
 
-  create(createCoffeeDto: CreateCoffeeDto) {
+  async create(createCoffeeDto: CreateCoffeeDto) {
+    /* save the flavours in the flavours table first */
+    const flavours = await Promise.all(
+      createCoffeeDto.flavours.map((name) => this.preloadFlavourByName(name)),
+    );
+
     /* create a Coffee class instance based on our partial Dto and save to the variable coffee */
-    const coffee = this.coffeeRepository.create(createCoffeeDto);
+    const coffee = this.coffeeRepository.create({
+      ...createCoffeeDto,
+      flavours,
+    });
 
     /* call the save method (which returns a promise) and our new entity will be saved to the database */
     return this.coffeeRepository.save(coffee);
   }
 
   async update(id: string, updateCoffeeDto: UpdateCoffeeDto) {
+    /* if flavours passed in update request save the flavours in the flavours table first */
+    const flavours =
+      updateCoffeeDto.flavours &&
+      (await Promise.all(
+        updateCoffeeDto.flavours.map((name) => this.preloadFlavourByName(name)),
+      ));
+
     const coffee = await this.coffeeRepository.preload({
       id: +id,
       ...updateCoffeeDto,
+      flavours,
     });
 
     if (!coffee) {
@@ -77,5 +97,17 @@ export class CoffeesService {
     as findOne method automatically handle that for us  */
 
     return this.coffeeRepository.remove(coffee);
+  }
+
+  private async preloadFlavourByName(name: string): Promise<Flavour> {
+    const existingFlavour = await this.flavourRepository.findOne({
+      where: { name: name },
+    });
+
+    if (existingFlavour) {
+      return existingFlavour;
+    }
+
+    return this.flavourRepository.create({ name });
   }
 }

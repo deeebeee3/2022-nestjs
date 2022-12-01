@@ -323,3 +323,28 @@ coffee_flavours_flavour
 flavour
 
 ---
+
+### Relations are not Eagerly loaded
+
+Also remember relations are not eagerly loaded wheh making a request for data...
+
+We need to specify the relation we want to include when getting data back like so:
+
+```js
+const coffee = await this.coffeeRepository.findOne({
+  where: { id: id },
+  relations: ['flavours'],
+});
+```
+
+---
+
+### Cascade
+
+When creating a new coffee with a flavour/s, automatically insert the flavours into the flavour table:
+
+```js
+  @ManyToMany((type) => Flavour, (flavour) => flavour.coffees, {
+    cascade: true,
+  })
+```

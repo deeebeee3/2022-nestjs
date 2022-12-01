@@ -20,11 +20,13 @@ export class Coffee {
 
   /* @JoinTable helps specify the OWNER side of the relationship,
   which in this case is the Coffee Entity...
-  
+
   Now that we have joined these tables lets define the 
   type of relationship we want to exist between these entities.
   Each coffee can have multiple flavours... */
   @JoinTable()
-  @ManyToMany((type) => Flavour, (flavour) => flavour.coffees)
-  flavours: string[];
+  @ManyToMany((type) => Flavour, (flavour) => flavour.coffees, {
+    cascade: true,
+  })
+  flavours: Flavour[];
 }
