@@ -313,3 +313,13 @@ First param just establishes what the TYPE for the relation is. Its just a funct
 
 Second param - returns the related entity and specifies
 what property needs to be selected that is the inverse side of the relationship... In other words - what is coffee inside of the Flavour entity...
+
+### IMPORTANT - A new table will be created: coffee_flavours_flavour which represents the ManyToMany relation between Coffee and Flavour entities
+
+So in total we have three tables:
+
+coffee
+coffee_flavours_flavour
+flavour
+
+---
