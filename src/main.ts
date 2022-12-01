@@ -7,7 +7,7 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
-      transform: true /* tranform incoming request object to instance of dto */,
+      transform: true /* tranform incoming request object to instance of Dto */,
       forbidNonWhitelisted: true,
     }),
   );

@@ -260,3 +260,12 @@ But we will also be able to access Postgress from OUTSIDE container on port 5432
 Install below three packages;
 
 `pnpm install @nestjs/typeorm typeorm pg`
+
+### Repository to access database
+
+TypeORM support Repository design pattern
+
+Each Entity we create has its own repository...
+
+Since we created a Coffee Entity, we can now inject the automatically generated repository into our coffees service
+using the InjectRepository decorator
