@@ -29,9 +29,17 @@ export class CoffeesService {
     if (!coffee) {
       /* throw new HttpException(`Coffee #${id} not found`, HttpStatus.NOT_FOUND); */
       throw new NotFoundException(`Coffee #${id} not found`);
+
+      /* Note: throwing exception in async will automatically return a rejected promise:
+      return Promise.reject(`Coffee #${id} not found`) */
     }
 
+    /*  return Promise.resolve(coffee) */
     return coffee;
+
+    /* Note: Async functions always return a promise. If the return value of an async function is not explicitly a promise, 
+    it will be implicitly wrapped in a promise. Example: 
+    return Promise.resolve(coffee) */
   }
 
   create(createCoffeeDto: CreateCoffeeDto) {
