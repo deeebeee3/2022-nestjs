@@ -366,3 +366,12 @@ localhost:3000/coffees?offset=1 - skips first coffee and we get back all the res
 ## Transactions
 
 `nest generate class events/entities/event.entity --no-spec`
+
+---
+
+## Indexes
+
+Indexes are special lookup tables, that our db search engine can use to speed up data retrieval.
+
+Indexes help give our application rapid random lookups and efficient access of ordered records,
+use them whenever performance is vitaly important for a certain entity.
