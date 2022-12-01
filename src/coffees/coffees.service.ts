@@ -67,6 +67,8 @@ export class CoffeesService {
     const coffee = await this.coffeeRepository.findOne({
       where: { id: id },
     });
+    /* dont need to throw any errors manually if coffee does not exist
+    as findOne method automatically handle that for us  */
 
     return this.coffeeRepository.remove(coffee);
   }

@@ -269,3 +269,21 @@ Each Entity we create has its own repository...
 
 Since we created a Coffee Entity, we can now inject the automatically generated repository into our coffees service
 using the InjectRepository decorator
+
+### Side note on async functions:
+
+Async functions always return a promise. If the return value of an async function is not explicitly a promise,
+it will be implicitly wrapped in a promise. Example:
+
+```js
+return coffee;
+return Promise.resolve(coffee);
+```
+
+Throwing exception in async func will automatically return a rejected promise:
+
+```js
+return Promise.reject(`Coffee #${id} not found`);
+```
+
+---
