@@ -18,14 +18,20 @@ export class CoffeesService {
   ) {}
 
   findAll() {
-    return this.coffeeRepository.find();
+    return this.coffeeRepository.find({
+      relations: ['flavours'],
+    });
   }
 
   async findOne(id: number) {
     /* Using nestjs built in exception layer this random error will be caught (500 Internal Server error) */
     /* throw 'A random error'; */
 
-    const coffee = await this.coffeeRepository.findOne({ where: { id: id } });
+    const coffee = await this.coffeeRepository.findOne({
+      where: { id: id },
+      relations: ['flavours'],
+    });
+
     if (!coffee) {
       /* throw new HttpException(`Coffee #${id} not found`, HttpStatus.NOT_FOUND); */
       throw new NotFoundException(`Coffee #${id} not found`);
