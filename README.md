@@ -292,3 +292,24 @@ return Promise.reject(`Coffee #${id} not found`);
 
 `nest g class coffees/entities/flavour.entity --no-spec`
 (don't need test file for entities)
+
+### ManyToMany Relation:
+
+Notes:
+
+```js
+@JoinTable()
+```
+
+Specifies the OWNER side of the relationship
+
+---
+
+```js
+  @ManyToMany((type) => Flavour, (flavour) => flavour.coffees)
+```
+
+First param just establishes what the TYPE for the relation is. Its just a function that returns a reference to the related entity.
+
+Second param - returns the related entity and specifies
+what property needs to be selected that is the inverse side of the relationship... In other words - what is coffee inside of the Flavour entity...
