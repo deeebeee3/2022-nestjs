@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   imports: [
     CoffeesModule,
+    /* configure connection to postgres using forRoot (we only use once here) func from TypeOrmModule */
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
