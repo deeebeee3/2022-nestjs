@@ -8,6 +8,9 @@ async function bootstrap() {
     new ValidationPipe({
       whitelist: true,
       transform: true /* tranform incoming request object to instance of Dto */,
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
       forbidNonWhitelisted: true,
     }),
   );

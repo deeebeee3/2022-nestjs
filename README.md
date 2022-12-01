@@ -348,3 +348,15 @@ When creating a new coffee with a flavour/s, automatically insert the flavours i
     cascade: true,
   })
 ```
+
+---
+
+## Pagination
+
+`nest generate class common/dto/pagination-query.dto --no-spec`
+
+To test:
+
+localhost:3000/coffees?limit=1 - should return just one result
+
+localhost:3000/coffees?offset=1 - skips first coffee and we get back all the rest of the results from db
