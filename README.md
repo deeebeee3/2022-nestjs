@@ -375,3 +375,64 @@ Indexes are special lookup tables, that our db search engine can use to speed up
 
 Indexes help give our application rapid random lookups and efficient access of ordered records,
 use them whenever performance is vitaly important for a certain entity.
+
+---
+
+## MIGRATIONS
+
+typeorm config file (ormconfig.ts):
+
+```ts
+import { DataSource } from 'typeorm';
+
+export const typeOrmConnectionDataSource = new DataSource({
+  type: 'postgres',
+  host: 'localhost',
+  port: 5432,
+  username: 'xxxx',
+  password: 'xxxx',
+  database: 'postgres',
+  entities: ['dist/src/**/*.entity.js'],
+  migrations: ['dist/src/migrations/*.js'],
+});
+```
+
+The config setiings above are the same we used in our docker-compose file with a few additional values
+used to let typeorm migrations know where our entities and migration files will be.
+
+** TYPEORM MIGRATIONS NEED TO WORK ON COMPILED FILES, which nest will output in the dist folder **
+
+Typeorm provides us with a dedicated CLI we can use.
+
+### Create First migration (AUTOMATICALLY)
+
+** npx lets us use executable packages without having to install them, this lets us use the typeorm CLI without
+actually installing it on our machine. **
+
+1. Edit the Entity (add new column or rename an existing column etc etc) and save file.
+
+Example add a new description column in Coffee Entity:
+
+```js
+  @Column({ nullable: true })
+  description: string;
+```
+
+2. Compile code using: `pnpm run build`
+   TYPEORM MIGRATIONS NEED TO WORK ON COMPILED FILES, which nest will output in the dist folder.
+
+3. Now let typeorm generate a migration for us:
+   `typeorm migration:generate ./src/migrations/[name of migration depending on what your doing] -d ./dist/ormconfig.js`
+
+   A migration .ts file will be added to ./src/migrations
+
+   `-d` flag refers to datasource...
+
+4. Compile code again so this time we have the migrations folder compiled to dist/src/migrations
+   `pnpm run build`
+
+5. Run the migration
+   `npx typeorm migration:run -d ./dist/ormconfig.js`
+
+6. To revert the migration do:
+   `npx typeorm migration:revert -d ./dist/ormconfig.js`
