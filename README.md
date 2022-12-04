@@ -436,3 +436,17 @@ Example add a new description column in Coffee Entity:
 
 6. To revert the migration do:
    `npx typeorm migration:revert -d ./dist/ormconfig.js`
+
+# SECTION THREE 3
+
+## Dependency Injection
+
+Understand encapsulation...
+
+Generate a module
+`nest g mo coffee-rating`
+
+Generate a service
+`nest g s coffee-rating`
+
+Lets say our new CoffeeRatingService depends on CoffeeService to fetch Coffee's from the db...
