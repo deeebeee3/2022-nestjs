@@ -6,11 +6,16 @@ import { Coffee } from './entities/coffee.entity';
 import { Flavour } from './entities/flavour.entity';
 import { Event } from 'src/events/entities/event.entity';
 
+class MockCoffeesService {}
+
 @Module({
   /* register entity using forFeature func from TypeOrmModule */
   imports: [TypeOrmModule.forFeature([Coffee, Flavour, Event])],
   controllers: [CoffeesController],
-  providers: [CoffeesService],
+  providers: [
+    CoffeesService,
+    { provide: CoffeesService, useValue: new MockCoffeesService() },
+  ],
   exports: [
     CoffeesService,
   ] /* now we are able to use CoffeesService any where in our CoffeeRatingModule */,
