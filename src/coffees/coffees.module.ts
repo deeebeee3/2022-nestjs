@@ -9,6 +9,10 @@ import { COFFEE_BRANDS } from './coffees.constants';
 
 class MockCoffeesService {}
 
+class ConfigService {}
+class DevelopmentConfigService {}
+class ProductionConfigService {}
+
 @Module({
   /* register entity using forFeature func from TypeOrmModule */
   imports: [TypeOrmModule.forFeature([Coffee, Flavour, Event])],
@@ -17,6 +21,13 @@ class MockCoffeesService {}
     CoffeesService,
     { provide: CoffeesService, useValue: new MockCoffeesService() },
     { provide: COFFEE_BRANDS, useValue: ['buddy brew', 'nescafe'] },
+    {
+      provide: ConfigService,
+      useClass:
+        process.env.NODE_ENV === 'development'
+          ? DevelopmentConfigService
+          : ProductionConfigService,
+    },
   ],
   exports: [
     CoffeesService,
