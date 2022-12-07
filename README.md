@@ -450,3 +450,22 @@ Generate a service
 `nest g s coffee-rating`
 
 Lets say our new CoffeeRatingService depends on CoffeeService to fetch Coffee's from the db...
+
+### Async Factory Pattern
+
+Asynchronous Providers...
+
+Sometimes when our application is bootstrapped, we need to delay the entire process until
+one or more async tasks have completed. For example, we do not want to accept requests
+until the connection with our database has been established.
+
+We will see our CoffeeService class is instantiated AFTER COFFEE are returned from the database.
+Can check by looking at console logs.
+
+```js
+console.log('[!] Async factory');
+
+//followed by
+
+console.log(coffeeBrands); /* in the CoffeeService class constructor function */
+```

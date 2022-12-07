@@ -6,6 +6,7 @@ import { Coffee } from './entities/coffee.entity';
 import { Flavour } from './entities/flavour.entity';
 import { Event } from 'src/events/entities/event.entity';
 import { COFFEE_BRANDS } from './coffees.constants';
+import { DataSource } from 'typeorm';
 
 //class MockCoffeesService {}
 
@@ -33,12 +34,26 @@ export class CoffeeBrandsFactory {
     // { provide: CoffeesService, useValue: new MockCoffeesService() },
     // { provide: COFFEE_BRANDS, useValue: ['buddy brew', 'nescafe'] },
     // { provide: COFFEE_BRANDS, useFactory: () => ['buddy brew', 'nescafe'] },
+    // {
+    //   provide: COFFEE_BRANDS,
+    //   useFactory: (brandsFactory: CoffeeBrandsFactory) =>
+    //     brandsFactory.create(),
+    //   /* inject takes in an array of providers, which get passed to the useFactory function and we can use them however we like */
+    //   inject: [CoffeeBrandsFactory],
+    // },
     {
       provide: COFFEE_BRANDS,
-      useFactory: (brandsFactory: CoffeeBrandsFactory) =>
-        brandsFactory.create(),
-      /* inject takes in an array of providers, which get passed to the useFactory function and we can use them however we like */
-      inject: [CoffeeBrandsFactory],
+      useFactory: async (dataSource: DataSource): Promise<string[]> => {
+        //const coffeeBrands = await dataSource.query('SELECT * ...');
+        const coffeeBrands = await Promise.resolve([
+          'buddy brew',
+          'nescafe',
+          'kenco',
+        ]); /* mocked promise (pretend to make call to database and await results) */
+        console.log('[!] Async factory');
+        return coffeeBrands;
+      },
+      inject: [DataSource],
     },
     // {
     //   provide: ConfigService,
