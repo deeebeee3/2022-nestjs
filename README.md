@@ -517,3 +517,14 @@ Transient and Request scope lifetimes...
    ```js
    @Injectable({ scope: Scope.REQUEST})
    ```
+
+   Request scope providers can inject their original request object - useful if you need headers, cookies, ip addresses etc...
+   However, this may have an impact on app performance, since nest has to create a newinstance of the class for every request
+
+   ```js
+   @Inject(REQUEST) private readonly request: Request,
+   ```
+
+HOWEVER, always recommended to use the default Singleton Scope whenever possible.
+
+---
