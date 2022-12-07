@@ -37,6 +37,7 @@ export class CoffeeBrandsFactory {
       provide: COFFEE_BRANDS,
       useFactory: (brandsFactory: CoffeeBrandsFactory) =>
         brandsFactory.create(),
+      /* inject takes in an array of providers, which get passed to the useFactory function and we can use them however we like */
       inject: [CoffeeBrandsFactory],
     },
     // {
