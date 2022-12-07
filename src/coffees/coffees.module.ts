@@ -21,15 +21,16 @@ class ProductionConfigService {}
   controllers: [CoffeesController],
   providers: [
     CoffeesService,
-    { provide: CoffeesService, useValue: new MockCoffeesService() },
-    { provide: COFFEE_BRANDS, useValue: ['buddy brew', 'nescafe'] },
-    {
-      provide: ConfigService,
-      useClass:
-        process.env.NODE_ENV === 'development'
-          ? DevelopmentConfigService
-          : ProductionConfigService,
-    },
+    // { provide: CoffeesService, useValue: new MockCoffeesService() },
+    // { provide: COFFEE_BRANDS, useValue: ['buddy brew', 'nescafe'] },
+    { provide: COFFEE_BRANDS, useFactory: () => ['buddy brew', 'nescafe'] },
+    // {
+    //   provide: ConfigService,
+    //   useClass:
+    //     process.env.NODE_ENV === 'development'
+    //       ? DevelopmentConfigService
+    //       : ProductionConfigService,
+    // },
   ],
   exports: [
     CoffeesService,
