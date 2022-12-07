@@ -459,7 +459,7 @@ Sometimes when our application is bootstrapped, we need to delay the entire proc
 one or more async tasks have completed. For example, we do not want to accept requests
 until the connection with our database has been established.
 
-We will see our CoffeeService class is instantiated AFTER COFFEE are returned from the database.
+We will see our CoffeeService class is instantiated AFTER COFFEE BRANDS are returned from the database.
 Can check by looking at console logs.
 
 ```js
