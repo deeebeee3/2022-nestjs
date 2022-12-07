@@ -469,3 +469,11 @@ console.log('[!] Async factory');
 
 console.log(coffeeBrands); /* in the CoffeeService class constructor function */
 ```
+
+---
+
+### Dynamic Modules
+
+`nest g mo database --no-spec`
+
+Very important - sometimes we need to configure a module from a consuming module.
