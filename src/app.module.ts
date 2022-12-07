@@ -8,7 +8,12 @@ import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      /* can specify a path to / or a different name env file */
+      envFilePath: '.environment',
+      /* can also choose to ignore env files like if deploying to a production env using heroku and setting the config variables via the UI */
+      /* ignoreEnvFile: true, */
+    }),
     CoffeesModule,
     /* configure connection to postgres using forRoot (we only use once here) func from TypeOrmModule */
     TypeOrmModule.forRoot({
