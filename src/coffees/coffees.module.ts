@@ -9,6 +9,8 @@ import { COFFEE_BRANDS } from './coffees.constants';
 
 class MockCoffeesService {}
 
+/* imagine this is abstract class, and depending on the dev env, 
+the below two classes are different implementations of it */
 class ConfigService {}
 class DevelopmentConfigService {}
 class ProductionConfigService {}
