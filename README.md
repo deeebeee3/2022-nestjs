@@ -528,3 +528,13 @@ Transient and Request scope lifetimes...
 HOWEVER, always recommended to use the default Singleton Scope whenever possible.
 
 ---
+
+# SECTION FOUR 4
+
+## Application Configuration
+
+`pnpm install @nestjs/config`
+
+IMPORTANT - NORMALLY SHOULD NOT ADD .env file to gitcontrol...
+
+Add `*.env` in `.gitignore` file
