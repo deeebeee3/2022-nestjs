@@ -477,3 +477,43 @@ console.log(coffeeBrands); /* in the CoffeeService class constructor function */
 `nest g mo database --no-spec`
 
 Very important - sometimes we need to configure a module from a consuming module.
+
+---
+
+### Control Providers scope (how to control the scope of providers (classes))
+
+DEFAULT BEHAVIOUR:
+
+```js
+@Injectable()
+```
+
+is really a shorthand implementation for
+
+```js
+@Injectable({ scope: Scope.DEFAULT})
+```
+
+Since generally by default all providers are Singletons (classes created once and cached for use when application is first bootstrapped)
+
+As a best practice, using Singleton scope is recommended for most use cases... mainly for performance reasons.
+
+---
+
+### However, what other lifetimes are available for injectable providers...
+
+Transient and Request scope lifetimes...
+
+1. Transient providers are not shared across consumers, each consumer that injects a transient provider will receive a new dedicated instance
+   of that provider.
+
+   ```js
+   @Injectable({ scope: Scope.TRANSIENT})
+   ```
+
+2. Request scope, provides a new instance of the provider exclusively for each incoming request.
+   The instance is also automatically garbage collected after request has finished processing.
+
+   ```js
+   @Injectable({ scope: Scope.REQUEST})
+   ```
