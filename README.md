@@ -538,3 +538,10 @@ HOWEVER, always recommended to use the default Singleton Scope whenever possible
 IMPORTANT - NORMALLY SHOULD NOT ADD .env file to gitcontrol...
 
 Add `*.env` in `.gitignore` file
+
+## Schema Validation
+
+Install Joi:
+
+`pnpm install joi`
+`pnpm install --save-dev @types/joi`
